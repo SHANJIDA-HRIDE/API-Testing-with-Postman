@@ -1,0 +1,8 @@
+newman run Shanjida_Hride.postman_collection.json -e Practise.postman_environment.json
+
+
+
+
+Second  Report
+
+newman run Shanjida_Hride.postman_collection.json -e Practise.postman_environment.json -r cli,htmlextra

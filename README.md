@@ -1,34 +1,17 @@
-# Content    
-- [Introduction](https://github.com/SHANJIDA-HRIDE/API-Testing-with-Postman#introduction)    
-- [Summary](https://github.com/SHANJIDA-HRIDE/API-Testing-with-Postman#summery)      
-- [Requirements](https://github.com/SHANJIDA-HRIDE/API-Testing-with-Postman#requirements)      
-- [Assertions Details](https://github.com/SHANJIDA-HRIDE/API-Testing-with-Postman#assertions-details)   
-  - [Create User](https://github.com/SHANJIDA-HRIDE/API-Testing-with-Postman#create-user)   
-  - [GenerateToken](https://github.com/SHANJIDA-HRIDE/API-Testing-with-Postman#generatetoken)   
-  - [Authorized](https://github.com/SHANJIDA-HRIDE/API-Testing-with-Postman#authorized)   
-  - [Books List](g#books-list)   
-  - [Ordering Books](https://github.com/SHANJIDA-HRIDE/API-Testing-with-Postman#ordering-books)   
-  - [Order Book Detail](https://github.com/SHANJIDA-HRIDE/API-Testing-with-Postman#order-book-detail)   
-  - [Book ISBN Detail](https://github.com/SHANJIDA-HRIDE/API-Testing-with-Postmang#book-isbn-detail)   
-  - [Edit ISBN](https://github.com/SHANJIDA-HRIDE/API-Testing-with-Postmang#edit-isbn)   
-  - [Delete User](https://github.com/SHANJIDA-HRIDE/API-Testing-with-Postman#delete-user)  
-- [Create Test Suites](https://github.com/SHANJIDA-HRIDE/API-Testing-with-Postmang#create-test-suites)      
-      
-
 # Introduction
 This document explains how to run an API test with Postman against. 
 
 # Summery    
-I have Completed an API test of student details 
-https://thetestingworldapi.com/#/     
+I have Completed an API test of student details, Create Student, Get Specific Student, Create Technical Skills, Create Student Address.
+https://thetestingworldapi.com/   
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/92669932/195163253-ea5985da-7d5c-4de2-aece-ddcb604ee5e3.jpg" />
+  <img src="https://github.com/SHANJIDA-HRIDE/API-Testing-with-Postman/assets/62147630/257e086c-a3ef-431c-9ea8-b27ee39a8ab2" />
 </p>
  
 
-Here in this API new books were orderd list of books were viewed and different tests were performed like GET, POST, PUT,DELETE.
+Here in this API student details viewed and different tests were performed like GET, POST, PUT,DELETE.
 
-**Summary:** Test Scripts 11 and Total 24 assertions were done. All of them passed with 0 skipped tests. The number of iteration was 1.
+**Summary:** Test Scripts 6 and Total 20 assertions were done. All of them passed with 0 skipped tests. The number of iteration was 1.
 
 
 
@@ -43,53 +26,237 @@ https://nodejs.org/en/
 
 
 # Assertions Details    
-#### Create User         
+#### Get Student
+##Test Script
 ```bash
-// set environment UserID
-var jsonData = pm.response.json();
-pm.environment.set("userID", jsonData.userID);
+var jsonData = pm.response.json()
+var ststuscode = pm.response.code
+console.log(jsonData.length)
 
-// environment UserName and actual UserName same or not
-pm.test("Test username", function () {
-pm.expect(jsonData.username).to.eql(pm.environment.get("userName"));
+if(ststuscode==200){
+var jsonData = pm.response.json()
+pm.test(" 200 OK", function(){
+    pm.response.to.have.status(200);
 });
+}
+else if(ststuscode==404){
 
-// Expected status code and response status code same or not
-pm.test("Status code is 201", function () {
-pm.response.to.have.status(201);
-});     
+    pm.test("Not Found", function(){
+    pm.response.to.have.status(404);
+    });
+}
+
+else if(ststuscode==200){
+
+    pm.test("OK", function(){
+    pm.response.to.have.status(200);
+    });
+}
+
+else if(ststuscode==201){
+
+    pm.test("Created", function(){
+    pm.response.to.have.status(201);
+    });
+}
+
+else if(ststuscode==202){
+
+    pm.test("Accepted", function(){
+    pm.response.to.have.status(202);
+    });
+}
+
+else if(ststuscode==400){
+
+    pm.test("Bad Request", function(){
+    pm.response.to.have.status(400);
+    });
+}
+
+else if(ststuscode==401){
+
+    pm.test("Unauthorized", function(){
+    pm.response.to.have.status(401);
+    });
+}
+
+else if(ststuscode==403){
+
+    pm.test("Fordidden", function(){
+    pm.response.to.have.status(403);
+    });
+}
+
+else if(ststuscode==405){
+
+    pm.test("Method Not Allowed", function(){
+    pm.response.to.have.status(405);
+    });
+}
+
+else if(ststuscode==500){
+
+    pm.test("Internal Server Error", function(){
+    pm.response.to.have.status(500);
+    });
+}
+
+else if(ststuscode==501){
+
+    pm.test("Not Implimented", function(){
+    pm.response.to.have.status(501);
+    });
+}
+
+else if(ststuscode==502){
+
+    pm.test("Bad Gateway", function(){
+    pm.response.to.have.status(502);
+    });
+}
+
+else if(ststuscode==503){
+
+    pm.test("Service Unavailable", function(){
+    pm.response.to.have.status(503);
+    });
+}
+
+else{
+    pm.test("Something Else!!!!")
+}     
 ```
-#### GenerateToken    
+#### Create Student
+##Body
 ```bash   
-// set environment token
-var jsonData = pm.response.json();
-pm.environment.set("token", jsonData.token);
+{
+"first_name": "{{firstName}}", 
+"middle_name": "{{middleName}}", 
+"last_name": "{{lastName}}", 
+"date_of_birth": "{{date_of_birth}}" 
+}
+```
 
+##Pre-Request Scripts 
 
-// environment token and actual token same or not
-pm.test("Test Token", function () {
-    pm.expect(jsonData.token).to.eql(pm.environment.get("token"));
-});
+```bash   
+var firstName = pm.variables.replaceIn("{{$randomFirstName}}")
+console.log("First Name Value:  "+ firstName)
+pm.environment.set("firstName",firstName)
 
-// Expected status code and response status code same or not
-pm.test("Status code is 200", function () {
-    pm.response.to.have.status(200);
-});
-```    
-#### Authorized  
+var middleName = pm.variables.replaceIn("{{$randomLastName}}")
+console.log("Middle Name Value:  "+ middleName)
+pm.environment.set("middleName",middleName)
+
+var lastName = pm.variables.replaceIn("{{$randomLastName}}")
+console.log("Last Name Value:  "+ lastName)
+pm.environment.set("lastName",lastName)
+
+const moment = require('moment')
+const today = moment()
+console.log(today.format("YYYY-MM-DD"))
+pm.environment.set("date_of_birth",today.add(1,'d').format("YYYY-MM-DD"))
+```
+##Test Script
 ```bash
-// Expected status code and response status code same or not
-pm.test("Status code is 200", function () {
-    pm.response.to.have.status(200);
-});
+var jsonData = pm.response.json()
+pm.environment.set("id", jsonData.id)
 
-//Actual Authorization true or false
-pm.test("Verify the Authorization", function () {
-    var jsonData = pm.response.json();
- pm.expect(jsonData).to.be.true;
+var ststuscode = pm.response.code
+console.log(ststuscode)
+
+if(ststuscode==201){
+var jsonData = pm.response.json()
+pm.test(" 201 Created", function(){
+    pm.response.to.have.status(201);
+});
+}
+else if(ststuscode==404){
+
+    pm.test("Not Found", function(){
+    pm.response.to.have.status(404);
+    });
+}
+
+else if(ststuscode==200){
+
+    pm.test("OK", function(){
+    pm.response.to.have.status(200);
+    });
+}
+
+
+
+else if(ststuscode==202){
+
+    pm.test("Accepted", function(){
+    pm.response.to.have.status(202);
+    });
+}
+
+else if(ststuscode==400){
+
+    pm.test("Bad Request", function(){
+    pm.response.to.have.status(400);
+    });
+}
+
+else if(ststuscode==401){
+
+    pm.test("Unauthorized", function(){
+    pm.response.to.have.status(401);
+    });
+}
+
+else if(ststuscode==403){
+
+    pm.test("Fordidden", function(){
+    pm.response.to.have.status(403);
+    });
+}
+
+else if(ststuscode==405){
+
+    pm.test("Method Not Allowed", function(){
+    pm.response.to.have.status(405);
+    });
+}
+
+else if(ststuscode==500){
+
+    pm.test("Internal Server Error", function(){
+    pm.response.to.have.status(500);
+    });
+}
+
+else if(ststuscode==501){
+
+    pm.test("Not Implimented", function(){
+    pm.response.to.have.status(501);
+    });
+}
+
+else if(ststuscode==502){
+
+    pm.test("Bad Gateway", function(){
+    pm.response.to.have.status(502);
+    });
+}
+
+else if(ststuscode==503){
+
+    pm.test("Service Unavailable", function(){
+    pm.response.to.have.status(503);
+    });
+}
+
+else{
+    pm.test("Something Else!!!!")
+}
 });
 ```   
-#### Books List     
+#### Get Specific Student  
 ```bash
 const response = pm.response.json();
 

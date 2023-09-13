@@ -19,7 +19,7 @@
 This document explains how to run an API test with Postman against. 
 
 # Summery    
-I have Completed a API test of student details 
+I have Completed an API test of student details 
 https://thetestingworldapi.com/#/     
 <p align="center">
   <img src="https://user-images.githubusercontent.com/92669932/195163253-ea5985da-7d5c-4de2-aece-ddcb604ee5e3.jpg" />

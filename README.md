@@ -818,8 +818,7 @@ npm install -g newman-reporter-htmlextra
     <img src="https://github.com/SHANJIDA-HRIDE/API-Testing-with-Postman/assets/62147630/0d7d4b6d-70f3-4ba4-80f6-02c7a1c05758"/></p>
 
     ## 🚀 About Me
-I'm a SQA Engineer at DevTechGuru 
-https://devtechguru.business.site/
+I'm a SQA Engineer at 🔗 [DevTechGuru ](https://devtechguru.business.site/)
 ## 🔗 Links
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/shanjida-hride-b38222173/)
 ## Related

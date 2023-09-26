@@ -1,15 +1,15 @@
 # Introduction
-This document explains how to run an API test with Postman against. 
+Welcome to the API testing suite for the thetestingworldapi.com API. This repository contains a Postman collection and environment designed to facilitate API testing for various functionalities related to student management. The API allows operations such as fetching student details, creating new students, retrieving specific students, adding technical skills, and managing student addresses. 
 
 # Summery    
-I have Completed an API test of student details, Create Student, Get Specific Student, Create Technical Skills, Create Student Address.
+I have Completed an API test of student details, Create Student, Get Specific Student, Create Technical Skills, and Create Student Address.
 https://thetestingworldapi.com/   
 <p align="center">
   <img src="https://github.com/SHANJIDA-HRIDE/API-Testing-with-Postman/assets/62147630/257e086c-a3ef-431c-9ea8-b27ee39a8ab2" />
 </p>
  
 
-Here in this API student details viewed and different tests were performed like GET, POST, PUT,DELETE.
+Here in this API student details viewed and different tests were performed like GET, POST, PUT, DELETE.
 
 **Summary:** Test Scripts 6 and Total 20 assertions were done. All of them passed with 0 skipped tests. The number of iteration was 1.
 
